@@ -1,0 +1,21 @@
+$ cat script.py
+#! /usr/bin/env -S bs
+# set -x
+# dir="$XDG_RUNTIME_DIR/test"
+# mkdir -p "$dir"
+# cd "$dir"
+# echo "hello" > file
+# python3 "$FILE"
+
+with open("file", "r") as f:
+    contents = f.read()
+    print(contents)
+
+
+$ ./script.py
++ dir=/run/user/1000/test
++ mkdir -p /run/user/1000/test
++ cd /run/user/1000/test
++ echo hello
++ python3 /home/ayats/Documents/script-bang/script.py
+hello
