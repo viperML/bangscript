@@ -62,6 +62,13 @@ fn main() -> eyre::Result<()> {
     let mut f = unsafe { File::from_raw_fd(fd.as_raw_fd()) };
     f.write_all(&bangscript_content)?;
 
+    File::options()
+        .create(true)
+        .truncate(true)
+        .write(true)
+        .open("result-conent")?
+        .write_all(&bangscript_content)?;
+
     let mut cmd = std::process::Command::new(&cli.program);
     cmd.arg(format!("/proc/self/fd/{}", fd.as_raw_fd()));
     let error = cmd.exec();

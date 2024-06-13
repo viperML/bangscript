@@ -1,6 +1,19 @@
 #! /usr/bin/env -S bs -p bash
-# eval "$(nix print-dev-env --impure --expr "with import <nixpkgs> {}; mkShell {packages = [python3];}")"
-# python3 "$FILE"
+#eval "$(nix print-dev-env --impure --expr "$(cat <<EOF
+#with import <nixpkgs> {};
+#mkShell {
+#    packages = [
+#        (python3.withPackages (p: [
+#          p.requests
+#        ]))
+#    ];
+#}
+#EOF
+#)")"
+#python3 "$FILE"
 
-print("hello")
+import requests
+
+resp = requests.get("https://httpbin.org")
+print(resp)
 
