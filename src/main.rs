@@ -39,8 +39,6 @@ fn main() -> eyre::Result<()> {
 
     let file = File::options().read(true).open(&cli.file)?;
 
-    eprintln!("/proc/{}/fd", process::id());
-
     let bytes = file.bytes();
 
     let mut eol = false;
